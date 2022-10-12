@@ -1,0 +1,153 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+	<Dialog id="idDialogCreateProduct" title="{StoresDeteils>/titleDialog}">
+		<f:SimpleForm maxContainerCols="1" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" labelSpanS="12" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsL="1" columnsM="1" id="idFormCreateOrEditProduct">
+			<f:content>
+				<Label text="{i18n>AtributsName}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterName}" value="{
+					path: 'Name',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 3
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterName}" value="{
+					path: 'Name',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 3
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsPrice}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterPrice}" description="USD" fieldWidth="85%" value="{
+					path: 'Price',
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+						minLength: 1
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterPrice}" description="USD" fieldWidth="85%" value="{
+					path: 'Price',
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+						minLength: 1
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsSpecs}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterSpecs}" value="{
+					path: 'Specs',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 5
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterSpecs}" value="{
+					path: 'Specs',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 5
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsRating}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterRating}" value="{
+					path: 'Rating',
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+						minLength: 1,
+						minimum: 1,
+						maximum: 5
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterRating}" value="{
+					path: 'Rating',
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+						minLength: 1,
+						minimum: 1,
+						maximum: 5
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsSupplierinfo}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterSupplierinfo}" value="{
+					path: 'SupplierInfo',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 5
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterSupplierinfo}" value="{
+					path: 'SupplierInfo',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 5
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsOrigin}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterOrigin}" value="{
+					path: 'MadeIn',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterOrigin}" value="{
+					path: 'MadeIn',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsProdCompanyu}" required="true"/>
+
+				<Input placeholder="{i18n>PlaceholderEnterProdCompany}" value="{
+					path: 'ProductionCompanyName',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 2
+					}
+				}" visible="{= !${StoresDeteils>/edit} }"/>
+				<Input placeholder="{i18n>PlaceholderEnterProdCompany}" value="{
+					path: 'ProductionCompanyName',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						minLength: 5
+					}
+				}" visible="{= ${StoresDeteils>/edit} }"/>
+
+				<Label text="{i18n>AtributsStatus}" required="true"/>
+
+				<Select forceSelection="false" width="100%" id="idSelectStatus" selectedKey="{Status}" visible="{= !${StoresDeteils>/edit} }">
+					<core:Item key="OK" text="{i18n>FilterOK}" />
+					<core:Item key="STORAGE" text="{i18n>FilterStorage}" />
+					<core:Item key="OUT_OF_STOCK" text="{i18n>FilterOutOfStock}" />
+				</Select>
+				<Select visible="{= ${StoresDeteils>/edit} }" width="100%" id="idSelectStatusEditable" selectedKey="{Status}">
+					<core:Item key="OK" text="{i18n>FilterOK}" />
+					<core:Item key="STORAGE" text="{i18n>FilterStorage}" />
+					<core:Item key="OUT_OF_STOCK" text="{i18n>FilterOutOfStock}" />
+				</Select>
+
+			</f:content>
+		</f:SimpleForm>
+		<buttons>
+			<Button text="{i18n>ButtonCreate}" type="Emphasized" press="onCreateProductPress" visible="{= !${StoresDeteils>/edit} }"/>
+			<Button text="{i18n>ButtonEdit}" type="Emphasized" press="onEditProductPress" visible="{= ${StoresDeteils>/edit} }"/>
+			<Button text="{i18n>ButtonCancel}" press="onCancelPress" visible="{= !${StoresDeteils>/edit} }"/>
+			<Button text="{i18n>ButtonCancel}" press="onCancelFromEditPress" visible="{= ${StoresDeteils>/edit} }"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
