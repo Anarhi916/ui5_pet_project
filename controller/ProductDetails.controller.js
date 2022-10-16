@@ -42,23 +42,19 @@ sap.ui.define(
                  * @param {sap.ui.base.Event} oEvent event object.
                  */
                 onPatternMatched: function (oEvent) {
-                    var that = this;
                     var oCommentsList = this.byId("idListComments");
                     var mRouteArguments = oEvent.getParameter("arguments");
                     sStoreID = mRouteArguments.StoreID;
                     sProductID = mRouteArguments.ProductID;
                     var oODataModel = this.getView().getModel("odata");
-                    oODataModel.metadataLoaded().then(function () {
+                    oODataModel.metadataLoaded().then(() => {
                         var sKey = oODataModel.createKey("/Products", {
                             id: sProductID,
                         });
-                        // var sKey = `/Products(${sProductID})`;
-
-                        that.getView().bindObject({
+                        this.getView().bindObject({
                             path: sKey,
                             model: "odata",
                         });
-
                         var oItemsBinding = oCommentsList.getBinding("items");
                         var oFilter = new Filter(
                             "ProductId",
@@ -157,10 +153,9 @@ sap.ui.define(
                                 },
                             }
                         );
-                        oODataModel.submitChanges(oEntryCtx);
-                        oODataModel.deleteCreatedEntry(oEntryCtx);
+                        oODataModel.submitChanges();
                         this.getView().byId("idAuthor").setValue("");
-                        this.getView().byId("idRating").setValue("");
+                        this.getView().byId("idRating").setValue(0);
                         let sMessage = this.getView()
                             .getModel("i18n")
                             .getResourceBundle()

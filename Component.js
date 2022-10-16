@@ -1,18 +1,15 @@
-sap.ui.define(
-  ["sap/ui/core/UIComponent", "sap/ui/model/odata/v2/ODataModel"],
-  function (UIComponent, ODataModel) {
+sap.ui.define(["sap/ui/core/UIComponent"], function (UIComponent) {
     "use strict";
 
     return UIComponent.extend("andrey.filimonov.Component", {
-      metadata: {
-        manifest: "json",
-      },
+        metadata: {
+            manifest: "json",
+        },
 
-      init: function () {
-        UIComponent.prototype.init.apply(this, arguments);
+        init: function () {
+            UIComponent.prototype.init.apply(this, arguments);
 
-        this.getRouter().initialize();
-      },
+            this.getRouter().initialize();
+        },
     });
-  }
-);
+});
